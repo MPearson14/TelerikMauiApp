@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             x:Class="TelerikMauiApp.ComboPage"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
+             xmlns:models="clr-namespace:TelerikMauiApp.Models"
+             xmlns:viewmodels="clr-namespace:TelerikMauiApp.ViewModels"
+             x:DataType="viewmodels:ComboViewModel"
+             x:Name="ComboViewPage">
+
+    <ContentPage.Resources>
+        <Style TargetType="telerik:RadButton" x:Key="ClearButtonStyle">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightModeControlTextColor}, Dark={StaticResource DarkModeControlTextColor}}"/>
+        </Style>
+        
+        <Style TargetType="telerik:RadButton" x:Key="DropDownButtonStyle">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightModeControlTextColor}, Dark={StaticResource DarkModeControlTextColor}}"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <VerticalStackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Label                         
+            Text="Test Combo"
+            TextColor="{StaticResource WhiteColor}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            LineBreakMode="NoWrap"
+            Margin="10, 10, 10, 10" />
+        </VerticalStackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightModeBackground}, Dark={StaticResource DarkModeBackground}}">
+            <Grid Margin="0, 20, 0, 0">
+                <VerticalStackLayout>
+                    <Label Text="Cities" HorizontalOptions="Fill" />
+                    <telerik:RadComboBox
+                        x:Name="CityPicker"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding Cities}"
+                        SelectedItems="{Binding SelectedCities}"
+                        SelectionMode="Multiple"
+                        AutomationId="cityPicker">                  
+                    </telerik:RadComboBox>
+
+                    <Label Text="Cities Placeholder Issue" Margin="0, 20, 0, 0" HorizontalOptions="Fill" />
+                    <telerik:RadComboBox
+                        x:Name="CityPickerPlaceholder"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding Cities}"                        
+                        SelectedItems="{Binding SelectedCitiesPlaceholder}"
+                        SelectionMode="Multiple"
+                        Placeholder="Please select one or more cities"
+                        AutomationId="cityPickerPlaceholder">
+                    </telerik:RadComboBox>
+
+                    <Label Text="Name" Margin="0, 20, 0, 0" HorizontalOptions="Fill" />
+                    <Entry HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
